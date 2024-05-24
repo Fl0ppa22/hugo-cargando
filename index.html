@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargando...</title>
+  <style>
+    body {
+      background-color: #f0f0f0; /* Cambia el color de fondo según lo que desees */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .loader-container {
+      width: 200px;
+      height: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .loader {
+      width: 0%;
+      height: 100%;
+      background-color: #3498db; /* Cambia el color de la barra de carga */
+      transition: width 2s ease;
+    }
+
+    #loading-text {
+      margin-bottom: 20px;
+    }
+
+    #loading-gif {
+      position: absolute;
+      top: 30%; /* Ajusta la distancia desde la parte superior */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container">
+    <div class="loader" id="loader"></div>
+  </div>
+  <div id="loading-text">Cargando...</div>
+  
+  <!-- Agregar el GIF animado -->
+  <img id="loading-gif" src="loadig.gif" alt="Cargando..." width="100">
+  
+  <script>
+    window.onload = function() {
+      var loader = document.getElementById('loader');
+      var loadingText = document.getElementById('loading-text');
+      var width = 0;
+      var interval = setInterval(frame, 120); // Cambia el valor de 20 para ajustar la velocidad de carga
+
+      function frame() {
+        if (width >= 100) {
+          clearInterval(interval);
+          loadingText.textContent = '¡Listo!';
+          // Redirige a otra página cuando la carga alcance el 100%
+          window.location.href = 'http://fi3.bot-hosting.net:20018/';
+        } else {
+          width++;
+          loader.style.width = width + '%';
+        }
+      }
+    };
+  </script>
+</body>
+</html>
